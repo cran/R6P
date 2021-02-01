@@ -94,6 +94,11 @@ counter_A$add_1()
 counter_A$count
 counter_B$count
 }
+\seealso{
+Other base design patterns: 
+\code{\link{NullObject}()},
+\code{\link{ValueObject}()}
+}
 \concept{base design patterns}
 \section{Methods}{
 \subsection{Public methods}{

@@ -46,7 +46,8 @@ the database technology and/or defer its deployment. In this way,
 the temporary solution allows you to focus the development effort on
 the core functionality of the application.
 \item In situations where using SQL queries can be represented by
-meaningful names. For example \verb{Repository$get_efficient_cars() = SELECT * FROM mtcars WHERE mpg > 20}
+meaningful names. For example
+\verb{Repository$get_efficient_cars() = SELECT * FROM mtcars WHERE mpg > 20}
 \item When building \href{https://www.oreilly.com/library/view/software-architects-handbook/9781788624060/c47a09b6-91f9-4322-a6d4-9bc1604b1bdf.xhtml}{stateless microservices}.
 }
 }
