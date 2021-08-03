@@ -59,7 +59,7 @@ into thread clash problems.\if{html}{\out{
 }
 \examples{
 # See more examples at <https://tidylab.github.io/R6P/articles>
-address <- pryr::address
+address <- function(x) sub('<environment: (.*)>', '\\\\1', capture.output(x))
 
 # In this example we implement a `Counter` that inherits the qualities of
 # Singleton
@@ -73,10 +73,7 @@ Counter <- R6::R6Class("Counter", inherit = R6P::Singleton, public = list(
 counter_A <- Counter$new()
 counter_B <- Counter$new()
 
-sprintf("counter_A was crated at \%s", address(counter_A))
-sprintf("counter_B was crated at \%s", address(counter_B))
-
-identical(counter_A, counter_B)
+identical(counter_A, counter_B, ignore.environment = FALSE)
 
 # The two objects are equal and located at the same address; thus, they are
 # the same object.

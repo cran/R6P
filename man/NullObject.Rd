@@ -93,7 +93,8 @@ cars <- tryCatch(
 # Notice: Whether the subroutine fails or succeeds, it returns a tibble with 
 # the same structure.
 colnames(cars)
-#>  [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear" "carb"
+#>  [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"
+#> [11] "carb"
 }\if{html}{\out{</div>}}
 \itemize{
 \item In Shiny dashboards

@@ -3,8 +3,8 @@ Type: Package
 Title: Design Patterns in R
 URL: https://tidylab.github.io/R6P/, https://github.com/tidylab/R6P
 BugReports: https://github.com/tidylab/R6P/issues
-Version: 0.2.0
-Date: 2021-01-01
+Version: 0.2.2
+Date: 2021-08-01
 Authors@R: c(
     person("Harel", "Lustiger", email = "tidylab@gmail.com", role = c("aut", "cre"),
     comment = c(ORCID = "0000-0003-2953-9598")),
@@ -23,17 +23,15 @@ Description: Build robust and maintainable software with object-oriented design
     data-driven applications possess.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 7.1.1
 Language: en-GB
 Depends: R (>= 3.5)
-Suggests: testthat, collections, dplyr, DBI, RSQLite, ggplot2, tibble,
-        tidyr, pryr
-Imports: R6, purrr, stringr
+Suggests: testthat, DBI, RSQLite, ggplot2
+Imports: collections, dplyr, purrr, stringr, R6, tibble, tidyr
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2021-02-01 02:48:51 UTC; Alpha
+Packaged: 2021-08-03 07:52:20 UTC; Alpha
 Author: Harel Lustiger [aut, cre] (<https://orcid.org/0000-0003-2953-9598>),
   Tidylab [cph, fnd]
 Repository: CRAN
-Date/Publication: 2021-02-01 06:00:02 UTC
+Date/Publication: 2021-08-03 11:30:03 UTC
