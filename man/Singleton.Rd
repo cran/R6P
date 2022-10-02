@@ -8,13 +8,11 @@ Ensure a class only has one instance, and provide a global point
 of access to it.
 }
 \details{
-\if{html}{\out{
 <!-- One line about what the function does -->
-}}
 
 
-\emph{\strong{Singleton}} ensures a class only has one instance, and provide a
-global point of access to it.
+\emph{\strong{Singleton}} ensures a class only has one instance, and provide a global
+point of access to it.
 \subsection{How It Works}{
 \enumerate{
 \item Create only one instance of the \strong{Singleton} class; and
@@ -24,36 +22,22 @@ global point of access to it.
 The main features of \strong{Singleton} are:
 \itemize{
 \item Ensuring that one and only one object of the class gets created;
-\item Providing an access point for an object that is global to the
-program; and
+\item Providing an access point for an object that is global to the program; and
 \item Controlling concurrent access to resources that are shared.
 }
 }
 
 \subsection{When to Use It}{
 \itemize{
-\item In situations that require exactly one instance of a class, that
-must be accessible to clients from a well-known access point. See
-the \href{#example-1}{\code{Counter} example}.
-}\if{html}{\out{
-<div class="alert alert-danger">
-}}
-
-
-\strong{Caution:} Singletons can be a problem in multi-threaded applications,
-especially when they manipulate mutable data.\if{html}{\out{
+\item In situations that require exactly one instance of a class, that must be
+accessible to clients from a well-known access point. See the \href{#example-1}{\code{Counter} example}.
+}<div class="alert alert-danger">
+**Caution:** Singletons can be a problem in multi-threaded applications, especially when they manipulate mutable data.
 </div>
-}}
-\if{html}{\out{
 <div class="alert alert-info">
-}}
-
-
-\strong{Tip:} Singletons work well for immutable data, such as reading from
-some data source, since anything that can’t change isn’t going to run
-into thread clash problems.\if{html}{\out{
+**Tip:** 
+ Singletons work well for immutable data, such as reading from some data source, since anything that can’t change isn’t going to run into thread clash problems.
 </div>
-}}
 
 }
 }
@@ -100,12 +84,12 @@ Other base design patterns:
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{Singleton$new()}}
+\item \href{#method-Singleton-new}{\code{Singleton$new()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Singleton-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Singleton-new}{}}}
 \subsection{Method \code{new()}}{
 Create or retrieve an object
 \subsection{Usage}{

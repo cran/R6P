@@ -13,53 +13,45 @@ ValueObject(given = NA_character_, family = NA_character_)
 }
 \description{
 Model a domain concept using natural lingo of the domain
-experts, such as “Passenger”, “Address”, and “Money”.
+experts, such as "Passenger", "Address", and "Money".
 }
 \details{
-\if{html}{\out{
 <div class="alert alert-danger">
-}}
-
-
-\strong{Caution:} ValueObject is designed for demonstration purposes. Instead
-of directly using the design pattern as it appears in the package, you’d
-have to adjust the source code to the problem you are trying to solve.\if{html}{\out{
+**Caution:** ValueObject is designed for demonstration purposes. Instead of directly using the design pattern as it appears in the package, you'd have to adjust the source code to the problem you are trying to solve.
 </div>
-}}
-\if{html}{\out{
 <!-- One line about what the function does -->
-}}
 
 
-A \strong{Value Object} models a domain concept using natural lingo of the
-domain experts, such as “Passenger”, “Address”, and “Money”.
+A \strong{Value Object} models a domain concept using natural lingo of the domain
+experts, such as "Passenger", "Address", and "Money".
 
-Any \strong{Value Object} is created by a function that receives input,
-applies some transformations, and outputs the results in some data
-structure such as a vector, a list or a data.frame.
+Any \strong{Value Object} is created by a function that receives input, applies some
+transformations, and outputs the results in some data structure such as a
+vector, a list or a data.frame.
 \subsection{How It Works}{
 
 In R, a good option for creating a \strong{Value Object} is to follow two
 instructions:
 \itemize{
-\item A \strong{Value Object} is created by a \code{function}, rather than a class
-method; and
-\item A \strong{Value Object} returns a \code{tibble}, rather than a list or a
-vector.
+\item A \strong{Value Object} is created by a \code{function}, rather than a class method;
+and
+\item A \strong{Value Object} returns a \code{tibble}, rather than a list or a vector.
 }
 
-In essence, a \strong{Value Object} is a data type, like \code{integer},
-\code{logical}, \code{Date} or \code{data.frame} data types to name a few. While the
-built-in data types in R fit any application, \strong{Value Objects} are
-domain specific and as such, they fit only to a specific application.
-This is because, \code{integer} is an abstract that represent whole numbers.
-This abstract is useful in any application. However, a \strong{Value Object}
-represent a high-level abstraction that appears in a particular domain.
+In essence, a \strong{Value Object} is a data type, like \code{integer}, \code{logical}, \code{Date}
+or \code{data.frame} data types to name a few. While the built-in data types in R fit
+any application, \strong{Value Objects} are domain specific and as such, they fit
+only to a specific application. This is because, \code{integer} is an abstract that
+represent whole numbers. This abstract is useful in any application. However, a
+\strong{Value Object} represent a high-level abstraction that appears in a particular
+domain.
 
-An example of a \strong{Value Object} is the notion of a “Person”. Any person
-in the world has a name. Needless to say, a person name is spelt by
-letters, rather than numbers. A \strong{Value Object} captures these
-attribute as \code{tibble} columns and type checks:\if{html}{\out{<div class="r">}}\preformatted{Person <- function(given = NA_character_, family = NA_character_)\{
+An example of a \strong{Value Object} is the notion of a "Person". Any person in the
+world has a name. Needless to say, a person name is spelt by letters, rather
+than numbers. A \strong{Value Object} captures these attribute as \code{tibble} columns
+and type checks:
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{Person <- function(given = NA_character_, family = NA_character_)\{
   stopifnot(is.character(given), is.character(family))
   stopifnot(length(given) == length(family))
   
@@ -71,65 +63,68 @@ attribute as \code{tibble} columns and type checks:\if{html}{\out{<div class="r"
 }\if{html}{\out{</div>}}
 
 Instantiating a person \strong{Value Object} is done by calling the \code{Person}
-constructor function:\if{html}{\out{<div class="r">}}\preformatted{person <- Person(given = "Bilbo", family = "Baggins")
+constructor function:
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{person <- Person(given = "Bilbo", family = "Baggins")
 }\if{html}{\out{</div>}}
 
-Getting to know the advantages of a \strong{Value Object}, we should consider
-the typical alternative – constructing a Person by using the \code{tibble}
-function directly:\if{html}{\out{<div class="r">}}\preformatted{person <- tibble::tibble(given = "Bilbo", family = "Baggins")
+Getting to know the advantages of a \strong{Value Object}, we should consider the
+typical alternative -- constructing a Person by using the \code{tibble} function
+directly:
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{person <- tibble::tibble(given = "Bilbo", family = "Baggins")
 }\if{html}{\out{</div>}}
 
-Both implementations return objects with identical content and
-structure, that is, their column names, column types and cell values are
-identical. Then, why would one prefer using a \strong{Value Object} and its
-constructor over the direct alternative?
+Both implementations return objects with identical content and structure, that
+is, their column names, column types and cell values are identical. Then, why
+would one prefer using a \strong{Value Object} and its constructor over the direct
+alternative?
 
-There are four predominant qualities offered by the \strong{Value Object}
-pattern which are not offered by the alternative:
+There are four predominant qualities offered by the \strong{Value Object} pattern
+which are not offered by the alternative:
 \enumerate{
-\item Readability. Each \strong{Value Object} captures a concept belonging to
-the problem domain. Rather than trying to infer what a \code{tibble} is
-by looking at its low-level details, the \strong{Value Object}
-constructor descries a context on a high-level.
-\item Explicitness. Since the constructor of the \strong{Value Object} is a
-function, its expected input arguments and their type can be
-detailed in a helper file. Moreover, assigning input arguments with
-default values of specific type, such as \code{NA} (logical NA),
-\code{NA_integer_}, \code{NA_character_}, or \code{NA_Date} (see
-\code{lubridate::NA_Date}), expresses clearly the variable types of the
-\strong{Value Object}.
-\item Coherence. The representation of a \strong{Value Object} is concentrated
-in one place – its constructor. Any change, mainly modifications and
-extensions, applied to the constructor promise the change would
-propagate to all instances of the Value Objects. That means, no
-structure discrepancies between instances that are supposed to
-represent the same concept.
-\item Safety. The constructor may start with \href{https://en.wikipedia.org/wiki/Defensive_programming}{defensive programming} to
-ensure the qualities of its input. One important assertion is type
-checking. Type checking eliminated the risk of implicit type
-coercing. Another important assertion is checking if the lengths of
-the input arguments meet some criteria, say all inputs are of the
-same length, or more restrictively, all inputs are scalars. Having a
-set of checks makes the code base more robust. This is because
-\strong{Value Objects} are regularly created with the output of other
-functions calls, having a set of checks serves as pseudo-tests of
+\item Readability. Each \strong{Value Object} captures a concept belonging to the
+problem domain. Rather than trying to infer what a \code{tibble} is by looking at
+its low-level details, the \strong{Value Object} constructor descries a context
+on a high-level.
+\item Explicitness. Since the constructor of the \strong{Value Object} is a function,
+its expected input arguments and their type can be detailed in a helper
+file. Moreover, assigning input arguments with default values of specific
+type, such as \code{NA} (logical NA), \code{NA_integer_}, \code{NA_character_}, or
+\code{NA_Date} (see \code{lubridate::NA_Date}), expresses clearly the variable types
+of the \strong{Value Object}.
+\item Coherence. The representation of a \strong{Value Object} is concentrated in one
+place -- its constructor. Any change, mainly modifications and extensions,
+applied to the constructor promise the change would propagate to all
+instances of the Value Objects. That means, no structure discrepancies
+between instances that are supposed to represent the same concept.
+\item Safety. The constructor may start with \href{https://en.wikipedia.org/wiki/Defensive_programming}{defensive programming} to ensure
+the qualities of its input. One important assertion is type checking. Type
+checking eliminated the risk of implicit type coercing. Another important
+assertion is checking if the lengths of the input arguments meet some
+criteria, say all inputs are of the same length, or more restrictively, all
+inputs are scalars. Having a set of checks makes the code base more robust.
+This is because \strong{Value Objects} are regularly created with the output of
+other functions calls, having a set of checks serves as pseudo-tests of
 these functions output throughout the code.
 }
 
-In addition to these qualities, there are two desirable behaviours which
-are not offered by directly calling \code{tibble}:
+In addition to these qualities, there are two desirable behaviours which are not
+offered by directly calling \code{tibble}:
 \enumerate{
-\item Null Value Object. Calling the \strong{Value Object} constructor with no
-input arguments returns the structure of the \code{tibble} (column names
-and column types).
-\item Default values for missing input arguments. In this manner, the
-\strong{Value Object} has a well-defined behaviour for a person without a
-family name, such as Madonna and Bono.
+\item Null Value Object. Calling the \strong{Value Object} constructor with no input
+arguments returns the structure of the \code{tibble} (column names and column
+types).
+\item Default values for missing input arguments. In this manner, the \strong{Value
+Object} has a well-defined behaviour for a person without a family name,
+such as Madonna and Bono.
 }
 
-In addition to native R data types, a \strong{Value Object} constructor can
-receive other \strong{Value Objects} as input arguments. Here are two
-examples that transmute Person to other Person-based concepts:\if{html}{\out{<div class="r">}}\preformatted{# A Passenger is a Person with a flight booking reference
+In addition to native R data types, a \strong{Value Object} constructor can receive
+other \strong{Value Objects} as input arguments. Here are two examples that transmute
+Person to other Person-based concepts:
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{# A Passenger is a Person with a flight booking reference
 Passenger <- function(person = Person(), booking_reference = NA_character_)\{
   stopifnot(all(colnames(person) \%in\% colnames(Person())))
   stopifnot(is.character(booking_reference))
@@ -144,11 +139,13 @@ Passenger <- function(person = Person(), booking_reference = NA_character_)\{
 person <- Person(given = "Bilbo", family = "Baggins")
 passenger <- Passenger(person = person, booking_reference = "B662HR")
 print(passenger)
-#> # A tibble: 1 x 3
+#> # A tibble: 1 × 3
 #>   given family  booking_reference
 #>   <chr> <chr>   <chr>            
 #> 1 Bilbo Baggins B662HR
-}\if{html}{\out{</div>}}\if{html}{\out{<div class="r">}}\preformatted{# A Diner is a Person that may have dinner reservation
+}\if{html}{\out{</div>}}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{# A Diner is a Person that may have dinner reservation
 Diner <- function(person = Person(), reservation_time = NA_POSIXct_)\{
   stopifnot(all(colnames(person) \%in\% colnames(Person())))
   stopifnot(is.POSIXct(reservation_time))
@@ -163,7 +160,7 @@ person <- Person(given = "Bilbo", family = "Baggins")
 timestamp <- as.POSIXct("2021-01-23 18:00:00 NZDT")
 diner <- Diner(person = person, reservation_time = timestamp)
 print(diner)
-#> # A tibble: 1 x 3
+#> # A tibble: 1 × 3
 #>   given family  reservation_time   
 #>   <chr> <chr>   <dttm>             
 #> 1 Bilbo Baggins 2021-01-23 18:00:00
@@ -172,18 +169,19 @@ print(diner)
 
 \subsection{When to Use It}{
 \itemize{
-\item In situations where domain concepts are more important then the
-database schema. For example, when you are modelling Passengers,
-your first instinct might be to think about the different data
-sources you’d need for the analysis. You may envision
-“FlightDetails” and “CustomerDetails”. Next you will define the
-relationship between them. Instead, let the domain drive the design.
-Create a Passenger \strong{Value Object} with the attributes you must
+\item In situations where domain concepts are more important then the database
+schema. For example, when you are modelling Passengers, your first instinct
+might be to think about the different data sources you'd need for the
+analysis. You may envision "FlightDetails" and "CustomerDetails". Next you
+will define the relationship between them. Instead, let the domain drive the
+design. Create a Passenger \strong{Value Object} with the attributes you must
 have, regardless of any particular database schema.
-\item In a function that runs within a specific context. Rather than
-having an input argument called \code{data} of type \code{data.frame}, use the
-appropriate \strong{Value Object} name and pass it its constructor.
-}\if{html}{\out{<div class="r">}}\preformatted{Audience <- Person
+\item In a function that runs within a specific context. Rather than having an
+input argument called \code{data} of type \code{data.frame}, use the appropriate
+\strong{Value Object} name and pass it its constructor.
+}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{Audience <- Person
 
 ## Without a Value Object
 clean_audience_data <- function(data) 
@@ -196,18 +194,11 @@ clean_audience_data <- function(attendees = Audience())
 \itemize{
 \item In \href{https://en.wikipedia.org/wiki/Pipeline_(software)}{pipes and filters}
 architecture.
-}\if{html}{\out{
-<div class="alert alert-warning">
-}}
-
-
-\strong{Note:} \strong{Value Objects} do not need to have unit-tests. This is
-because of two reasons: (1) \strong{Value Objects} are often called by other
-functions that are being tested. That means, \strong{Value Objects} are
-implicitly tested. (2) \strong{Value Objects} are data types similarly to
-‘data.frame’ or ‘list’. As such, they need no testing\if{html}{\out{
+}<div class="alert alert-warning">
+**Note:** **Value Objects** do not need to have unit-tests. This is because of two reasons: 
+ (1) **Value Objects** are often called by other functions that are being tested. That means, **Value Objects** are implicitly tested. 
+ (2) **Value Objects** are data types similarly to 'data.frame' or 'list'. As such, they need no testing
 </div>
-}}
 
 }
 }

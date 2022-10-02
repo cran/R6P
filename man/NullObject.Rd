@@ -8,69 +8,53 @@ NullObject()
 }
 \description{
 Model a domain concept using natural lingo of the domain
-experts, such as “Passenger”, “Address”, and “Money”.
+experts, such as "Passenger", "Address", and "Money".
 }
 \details{
-\if{html}{\out{
 <div class="alert alert-danger">
-}}
-
-
-\strong{Caution:} NullObject is designed for demonstration purposes. Instead
-of directly using the design pattern as it appears in the package, you’d
-have to adjust the source code to the problem you are trying to solve.\if{html}{\out{
+**Caution:** NullObject is designed for demonstration purposes. Instead of directly using the design pattern as it appears in the package, you'd have to adjust the source code to the problem you are trying to solve.
 </div>
-}}
-\if{html}{\out{
 <!-- One line about what the function does -->
-}}
 
 
-\emph{\strong{Null Object}} provides special behaviour for particular cases.\if{html}{\out{
-<div class="alert alert-warning">
-}}
-
-
-\strong{Note:} The Null Object is not the same as the reserved word in R
-\code{NULL} (all caps).\if{html}{\out{
+\emph{\strong{Null Object}} provides special behaviour for particular cases.<div class="alert alert-warning">
+**Note:** The Null Object is not the same as the reserved word in R `NULL` (all
+ caps).
 </div>
-}}
 
 \subsection{How It Works}{
 
-When a function fails in R, some functions produce a run-time error
-while others return \code{NULL} (and potentially prompt a warning). What the
-function evokes in case of a failure is subjected to its programmer
-discretion. Usually, the programmer follows either a punitive or
-forgiving policy regarding how run-time errors should be handled.
+When a function fails in R, some functions produce a run-time error while others
+return \code{NULL} (and potentially prompt a warning). What the function evokes in
+case of a failure is subjected to its programmer discretion. Usually, the
+programmer follows either a punitive or forgiving policy regarding how
+run-time errors should be handled.
 
-In other occasions, \code{NULL} is often the result of unavailable data. This
-could happened when querying a data source matches no entries, or when
-the system is waiting for user input (mainly in Shiny).
+In other occasions, \code{NULL} is often the result of unavailable data. This could
+happened when querying a data source matches no entries, or when the system is
+waiting for user input (mainly in Shiny).
 
 If it is possible for a function to return \code{NULL} rather than an error,
 then it is important to surround it with null test code, e.g.
-\code{if(is.null(...)) do_the_right_thing()}. This way the software would do
-the right thing if a null is present.
+\code{if(is.null(...)) do_the_right_thing()}. This way the software would do the
+right thing if a null is present.
 
-Often the right thing is the same in many contexts, so you end up
-writing similar code in lots of places—committing the sin of code
-duplication.
+Often the right thing is the same in many contexts, so you end up writing
+similar code in lots of places—committing the sin of code duplication.
 
-Instead of returning \code{NULL}, or some odd value such as \code{NaN} or
-\code{logical(0)}, return a \strong{Null Object} that has the same interface as
-what the caller expects. In R, this often means returning a \code{data.frame}
-structure, i.e. column names and variables types, with no rows.
+Instead of returning \code{NULL}, or some odd value such as \code{NaN} or \code{logical(0)}, return a \strong{Null Object} that has the same interface as what the caller expects. In R, this often means returning a \code{data.frame} structure, i.e. column names and variables types, with no rows.
 }
 
 \subsection{When to Use It}{
 \itemize{
-\item In situations when a subroutine is likely to fail, such as loss of
-Internet or database connectivity. Instead of prompting a run-time
-error, you could return the \strong{Null Object} as part of a \href{https://en.wikipedia.org/wiki/Graceful_exit}{gracefully failing} strategy. A
-common strategy employs \code{tryCatch} that returns the \strong{Null Object}
-in the case of an error:
-}\if{html}{\out{<div class="r">}}\preformatted{# Simulate a database that is 5\% likely to fail 
+\item In situations when a subroutine is likely to fail, such as loss of Internet
+or database connectivity. Instead of prompting a run-time error, you could
+return the \strong{Null Object} as part of a \href{https://en.wikipedia.org/wiki/Graceful_exit}{gracefully failing} strategy. A common
+strategy employs \code{tryCatch} that returns the \strong{Null Object} in the case of
+an error:
+}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{# Simulate a database that is 5\% likely to fail 
 read_mtcars <- function() if(runif(1) < 0.05) stop() else return(mtcars)
 
 # mtcars null object constructor
@@ -98,7 +82,9 @@ colnames(cars)
 }\if{html}{\out{</div>}}
 \itemize{
 \item In Shiny dashboards
-}\if{html}{\out{<div class="r">}}\preformatted{geom_null <- function(...)\{
+}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{geom_null <- function(...)\{
   ggplot2::ggplot() + ggplot2::geom_blank() + ggplot2::theme_void()
 \}
 
@@ -110,7 +96,9 @@ if(exists("user_input"))\{
 }\if{html}{\out{</div>}}
 \itemize{
 \item In unit-tests
-}\if{html}{\out{<div class="r">}}\preformatted{classes <- function(x) sapply(x, class)
+}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{classes <- function(x) sapply(x, class)
     
 test_that("mtcars follows a certain table structure", \{
     # Compare column names

@@ -9,44 +9,42 @@ Mediates between the domain and data mapping layers using a
 collection-like interface for accessing domain objects.
 }
 \details{
-\if{html}{\out{
 <!-- One line about what the function does -->
-}}
 
 
-With \emph{\strong{Repository}}, in-memory objects do not need to know whether
-there is a database present or absent, they need no SQL interface code,
-and certainly no knowledge of the database schema.
+With \emph{\strong{Repository}}, in-memory objects do not need to know whether there is a
+database present or absent, they need no SQL interface code, and certainly no
+knowledge of the database schema.
 \subsection{How It Works}{
 \itemize{
-\item \strong{Repository} isolates domain objects from details of the database
-access code;
+\item \strong{Repository} isolates domain objects from details of the database access
+code;
 \item \strong{Repository} concentrates code of query construction; and
 \item \strong{Repository} helps to minimize duplicate query logic.
 }
 
-In R, the simplest form of \strong{Repository} encapsulates \code{data.frame}
-entries persisted in a data store and the operations performed over
-them, providing a more object-oriented view of the persistence layer.
-From the caller point of view, the location (locally or remotely), the
-technology and the interface of the data store are obscured.
+In R, the simplest form of \strong{Repository} encapsulates \code{data.frame} entries
+persisted in a data store and the operations performed over them, providing a
+more object-oriented view of the persistence layer. From the caller point of
+view, the location (locally or remotely), the technology and the interface of
+the data store are obscured.
 }
 
 \subsection{When to Use It}{
 \itemize{
 \item In situations with multiple data sources.
-\item In situations where the real data store, the one that is used in
-production, is remote. This allows you to implement a \strong{Repository}
-mock with identical queries that runs locally. Then, the mock could
-be used during development and testing. The mock itself may comprise
-a sample of the real data store or just fake data.
-\item In situations where the real data store doesn’t exist. Implementing
-a mock \strong{Repository} allows you to defer immature decisions about
-the database technology and/or defer its deployment. In this way,
-the temporary solution allows you to focus the development effort on
-the core functionality of the application.
-\item In situations where using SQL queries can be represented by
-meaningful names. For example
+\item In situations where the real data store, the one that is used in production,
+is remote. This allows you to implement a \strong{Repository} mock with identical
+queries that runs locally. Then, the mock could be used during development
+and testing. The mock itself may comprise a sample of the real data store or
+just fake data.
+\item In situations where the real data store doesn't exist. Implementing a mock
+\strong{Repository} allows you to defer immature decisions about the database
+technology and/or defer its deployment. In this way, the temporary solution
+allows you to focus the development effort on the core functionality of the
+application.
+\item In situations where using SQL queries can be represented by meaningful
+names. For example
 \verb{Repository$get_efficient_cars() = SELECT * FROM mtcars WHERE mpg > 20}
 \item When building \href{https://www.oreilly.com/library/view/software-architects-handbook/9781788624060/c47a09b6-91f9-4322-a6d4-9bc1604b1bdf.xhtml}{stateless microservices}.
 }
@@ -122,21 +120,21 @@ repository$get(key = "Mazda RX4")
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{AbstractRepository$new()}}
-\item \href{#method-add}{\code{AbstractRepository$add()}}
-\item \href{#method-del}{\code{AbstractRepository$del()}}
-\item \href{#method-get}{\code{AbstractRepository$get()}}
+\item \href{#method-Repository-new}{\code{AbstractRepository$new()}}
+\item \href{#method-Repository-add}{\code{AbstractRepository$add()}}
+\item \href{#method-Repository-del}{\code{AbstractRepository$del()}}
+\item \href{#method-Repository-get}{\code{AbstractRepository$get()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-Repository-new"></a>}}
+\if{latex}{\out{\hypertarget{method-Repository-new}{}}}
 \subsection{Method \code{new()}}{
 Instantiate an object
 \subsection{Usage}{
@@ -145,8 +143,8 @@ Instantiate an object
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add"></a>}}
-\if{latex}{\out{\hypertarget{method-add}{}}}
+\if{html}{\out{<a id="method-Repository-add"></a>}}
+\if{latex}{\out{\hypertarget{method-Repository-add}{}}}
 \subsection{Method \code{add()}}{
 Add an element to the Repository.
 \subsection{Usage}{
@@ -166,8 +164,8 @@ implementation of \code{AbstractRepository}.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-del"></a>}}
-\if{latex}{\out{\hypertarget{method-del}{}}}
+\if{html}{\out{<a id="method-Repository-del"></a>}}
+\if{latex}{\out{\hypertarget{method-Repository-del}{}}}
 \subsection{Method \code{del()}}{
 Delete an element from the Repository.
 \subsection{Usage}{
@@ -183,8 +181,8 @@ Delete an element from the Repository.
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-get"></a>}}
-\if{latex}{\out{\hypertarget{method-get}{}}}
+\if{html}{\out{<a id="method-Repository-get"></a>}}
+\if{latex}{\out{\hypertarget{method-Repository-get}{}}}
 \subsection{Method \code{get()}}{
 Retrieve an element from the Repository.
 \subsection{Usage}{
