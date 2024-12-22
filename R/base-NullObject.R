@@ -1,12 +1,6 @@
 #' @title Null Object Pattern
-#'
 #' @description Model a domain concept using natural lingo of the domain
-#'   experts, such as "Passenger", "Address", and "Money".
-#'
-#' @details
-#' ```{r child = "vignettes/details/NullObject.Rmd"}
-#' ````
-#'
+#'   experts, such as “Passenger”, “Address”, and “Money”.
 #' @family base design patterns
 #' @export
 #' @examples
@@ -14,6 +8,4 @@
 #'
 #' colnames(NullObject())
 #' nrow(NullObject())
-NullObject <- function() tibble::tibble(given = NA_character_, family = NA_character_)[0,]
-
-
+NullObject <- function() tibble::tibble(given = NA_character_, family = NA_character_)[0, ]

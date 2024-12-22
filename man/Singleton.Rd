@@ -2,68 +2,36 @@
 % Please edit documentation in R/base-Singleton.R
 \name{Singleton}
 \alias{Singleton}
-\title{Singleton Pattern}
+\title{Singleton}
 \description{
-Ensure a class only has one instance, and provide a global point
-of access to it.
+Enforces a single instance of a class and provides a global access point.
 }
 \details{
-<!-- One line about what the function does -->
-
-
-\emph{\strong{Singleton}} ensures a class only has one instance, and provide a global
-point of access to it.
-\subsection{How It Works}{
-\enumerate{
-\item Create only one instance of the \strong{Singleton} class; and
-\item If an instance exists, then serve the same object again.
-}
-
-The main features of \strong{Singleton} are:
-\itemize{
-\item Ensuring that one and only one object of the class gets created;
-\item Providing an access point for an object that is global to the program; and
-\item Controlling concurrent access to resources that are shared.
-}
-}
-
-\subsection{When to Use It}{
-\itemize{
-\item In situations that require exactly one instance of a class, that must be
-accessible to clients from a well-known access point. See the \href{#example-1}{\code{Counter} example}.
-}<div class="alert alert-danger">
-**Caution:** Singletons can be a problem in multi-threaded applications, especially when they manipulate mutable data.
-</div>
-<div class="alert alert-info">
-**Tip:** 
- Singletons work well for immutable data, such as reading from some data source, since anything that can’t change isn’t going to run into thread clash problems.
-</div>
-
-}
+This is an abstract base class. Instantiating \code{Singleton} directly triggers an error.
+Classes inheriting from \code{Singleton} share a single instance.
 }
 \examples{
 # See more examples at <https://tidylab.github.io/R6P/articles>
-address <- function(x) sub('<environment: (.*)>', '\\\\1', capture.output(x))
+address <- function(x) sub("<environment: (.*)>", "\\\\1", capture.output(x))
 
-# In this example we implement a `Counter` that inherits the qualities of
-# Singleton
+# In this example we implement a `Counter` that inherits the qualities of Singleton
 Counter <- R6::R6Class("Counter", inherit = R6P::Singleton, public = list(
-    count = 0,
-    add_1 = function(){self$count = self$count + 1; invisible(self)}
+  count = 0,
+  add_1 = function() {
+    self$count <- self$count + 1
+    invisible(self)
+  }
 ))
 
-# Whenever we call the constructor on `Counter`, we always get the exact same
-# instance:
+# Whenever we call the constructor on `Counter`, we always get the exact same instance:
 counter_A <- Counter$new()
 counter_B <- Counter$new()
 
 identical(counter_A, counter_B, ignore.environment = FALSE)
 
-# The two objects are equal and located at the same address; thus, they are
-# the same object.
+# The two objects are equal and located at the same address; thus, they are the same object.
 
-# When we make a change in any of the class instances, the rest of the
-# instances are changed as well.
+# When we make a change in any of the class instances, the rest are changed as well.
 
 # How many times has the counter been increased?
 counter_A$count
@@ -74,6 +42,7 @@ counter_A$add_1()
 # How many times have the counters been increased?
 counter_A$count
 counter_B$count
+
 }
 \seealso{
 Other base design patterns: 
